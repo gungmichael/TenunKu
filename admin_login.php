@@ -3,7 +3,7 @@ include "php/function.php";
 
 if(isset($_SESSION['adminLogin'])){
   if($_SESSION['adminLogin'] == true){
-    header("location: index.php");
+    header("location: dashboard.php");
   }
 }
 

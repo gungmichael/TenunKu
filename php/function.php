@@ -45,7 +45,7 @@ function register()
 {
     global $conn;
 
-    $username = $_POST['username']
+    $username = $_POST['username'];
     $nama = $_POST['fullname'];
     $email = $_POST['email'];
     $password = $_POST['password'];
