@@ -24,7 +24,10 @@ if(isset($_POST['login'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="container  text-center">
+    <div class="container text-center">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto" src="img/tenun logo.png" alt="" width="20%" height="20%">
+      </div>
       <form action="" method="POST">
         <h1 class="h2 mb-4 fw-normal">TenunKu System Sign In</h1>
         <div class="form-floating">

@@ -25,6 +25,9 @@ if (isset($_POST['register'])) {
 </head>
 <body>
     <div class="container w-100 m-auto text-center">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto" src="img/tenun logo.png" alt="" width="20%" height="20%">
+        </div>
         <form action="" method="POST">
             <h1 class="h3 mb-3 fw-normal">Register</h1>
 
