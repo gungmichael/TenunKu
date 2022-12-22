@@ -14,7 +14,7 @@
     <nav class="navbar navbar-light navbar-expand-lg fixed-top navbar-shrink py-3" id="mainNav">
       <div class="container">
         <a class="navbar-brand d-flex align-items-justify"></a>
-        <a href="index.html"><img src="tenun logo.png" alt="" /></a>
+        <a href="index.html"><img src="img/tenun logo.png" alt="" /></a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
@@ -48,7 +48,7 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="vintage-golden-floral-background-remix-from-artwork-by-william-morris.jpg" class="img-fluid w-100 h-200" />
+            <img src="img/vintage-golden-floral-background-remix-from-artwork-by-william-morris.jpg" class="img-fluid w-100 h-200" />
 
             <div class="container">
               <div class="carousel-caption text-start">
@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="Yuk-Koleksi-Kain-Tenun-Khas-Indonesia-Ini.jpg" class="img-fluid w-100 h-200" />
+            <img src="img/Yuk-Koleksi-Kain-Tenun-Khas-Indonesia-Ini.jpg" class="img-fluid w-100 h-200" />
 
             <div class="container">
               <div class="carousel-caption">
@@ -70,7 +70,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="5daee14e2fab7.jpg" class="img-fluid w-100 h-200" />
+            <img src="img/5daee14e2fab7.jpg" class="img-fluid w-100 h-200" />
 
             <div class="container">
               <div class="carousel-caption text-end">
@@ -109,7 +109,7 @@
         <div class="row d-block">
           <div class="g-col-6 g-col-md-3">
             <div class="card" style="width: 18rem">
-              <img src="p_15276707777ed-mengenal-tenun-ikat-troso.jpg" class="card-img-top" alt="..." />
+              <img src="img/p_15276707777ed-mengenal-tenun-ikat-troso.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title" id="ikat">Tenun Ikat</h5>
                 <p class="card-text">Tenun ikat atau kain ikat adalah kriya tenun Indonesia berupa kain yang ditenun dari helaian benang pakan atau benang lungsin yang sebelumnya diikat dan dicelupkan ke dalam zat pewarna alami.</p>
@@ -119,7 +119,7 @@
           </div>
           <div class="g-col-6 g-col-md-3">
             <div class="card" style="width: 18rem">
-              <img src="621c6c100fc46.jpg" class="card-img-top" alt="..." />
+              <img src="img/621c6c100fc46.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title" id="songket">Tenun Songket</h5>
                 <p class="card-text">
@@ -131,7 +131,7 @@
           </div>
           <div class="g-col-6 g-col-md-3">
             <div class="card" style="width: 18rem">
-              <img src="kain-tenun-gringsing-2_169.jpeg" class="card-img-top" alt="..." />
+              <img src="img/kain-tenun-gringsing-2_169.jpeg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title" id="gringsing">Tenun Gringsing</h5>
                 <p class="card-text">
@@ -145,7 +145,7 @@
         <div class="row d-block" id="nextproduk">
           <div class="g-col-6 g-col-md-3">
             <div class="card" style="width: 18rem">
-              <img src="Songket Sidemen 5.jpg" class="card-img-top" alt="..." />
+              <img src="img/Songket Sidemen 5.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title" id="sidemen">Tenun Sidemen</h5>
                 <p class="card-text">Umumnya Tenun Sidemen memiliki banyak jenis, seperti contohnya tenun endek dan songket yang memiliki ciri khas tersendiri.</p>
@@ -155,7 +155,7 @@
           </div>
           <div class="g-col-6 g-col-md-3">
             <div class="card" style="width: 18rem">
-              <img src="Tenun Endek.jpg" class="card-img-top" alt="..." />
+              <img src="img/Tenun Endek.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title" id="endek">Tenun Endek</h5>
                 <p class="card-text">Endek adalah kain tenun yang berasal dari Bali. Kain endek merupakan hasil dari karya seni rupa terapan, yang berarti karya seni yang dapat diterapkan dalam kehidupan sehari-hari.</p>
@@ -165,7 +165,7 @@
           </div>
           <div class="g-col-6 g-col-md-3">
             <div class="card" style="width: 18rem">
-              <img src="1310527cepukkk780x390.jpg" class="card-img-top" alt="..." />
+              <img src="img/1310527cepukkk780x390.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title" id="rangrang">Tenun Rangrang</h5>
                 <p class="card-text">
