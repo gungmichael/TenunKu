@@ -1,0 +1,43 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+#mainNav {
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(vintage-golden-floral-background-remix-from-artwork-by-william-morris.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 65px;
+}
+#mainNav span {
+  color: azure;
+  font-size: 30px;
+  font-family: sans-serif;
+  font-style: inherit;
+  padding-left: 25px;
+  padding-top: 10px;
+}
+.carousel {
+  margin-bottom: 12rem;
+}
+
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+.carousel-item {
+  height: 28rem;
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
