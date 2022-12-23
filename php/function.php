@@ -1,7 +1,8 @@
 <?php
 include "config.php";
 
-function login(){
+function login()
+{
     global $conn;
 
     $email = $_POST['email'];
@@ -20,26 +21,42 @@ function login(){
     return false;
 }
 
-function adminLogin(){
+function logout()
+{
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+
+function adminLogin()
+{
     global $conn;
 
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $result = mysqli_query($conn, "SELECT * FROM admin WHERE email = '$email'");
+    $result = mysqli_query($conn, "SELECT * FROM admins WHERE email = '$email'");
 
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row['password'])) {
             $_SESSION['adminLogin'] = true;
-            header("Location: index.php");
+            header("Location: dash.php");
             exit;
         }
     }
     return false;
 }
 
-function register(){
+function logoutAdmin()
+{
+    session_destroy();
+    header("Location: admin_login.php");
+    exit;
+}
+
+function register()
+{
     global $conn;
 
     $username = $_POST['username'];
@@ -68,24 +85,26 @@ function register(){
     }
 }
 
-function getItems(){
+function getItems()
+{
     global $conn;
 
     $query = "SELECT * FROM barang";
     $result = mysqli_query($conn, $query);
     $rows = [];
-    while ($row = mysqli_fetch_assoc($result)){
+    while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
     }
 
-    if($result){
+    if ($result) {
         return $rows;
     } else {
         return false;
     }
 }
 
-function getItemsbyID($id_barang){
+function getItemsbyID($id_barang)
+{
     global $conn;
 
     $query = "SELECT * FROM barang WHERE id_barang = $id_barang";
