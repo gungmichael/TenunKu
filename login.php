@@ -1,6 +1,12 @@
 <?php
 require "php/function.php";
 
+if (isset($_SESSION['login'])) {
+  if ($_SESSION['login'] == true) {
+    header("Location: index.php");
+  }
+}
+
 if (isset($_POST['login'])) {
   login();
 }

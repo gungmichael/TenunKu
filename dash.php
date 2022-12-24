@@ -95,7 +95,7 @@ if (isset($_POST['addItems'])) {
                                 Detail
                             </button>
                             <a href="edit.php?id=<?= $item['id_barang'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="hapus.php?id=<?= $item['id_barang'] ?>"
+                            <a href="delete.php?id=<?= $item['id_barang'] ?>"
                                 onclick="confirm('Yakin untuk menghapus data ini?')"
                                 class="btn btn-danger btn-sm">Hapus</a>
                         </td>
@@ -139,7 +139,7 @@ if (isset($_POST['addItems'])) {
                         </div>
                         <div class="mb-3">
                             <label for="jenis_barang" class="form-label">Jenis Barang</label>
-                            <input type="number" class="form-control" id="deskripsi" name="deskripsi"
+                            <input type="number" class="form-control" id="deskripsi" name="jenis_barang"
                                 placeholder="Jenis Barang" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
@@ -149,7 +149,7 @@ if (isset($_POST['addItems'])) {
                         </div>
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan Barang</label>
-                            <textarea class="form-control" id="keterangan" name="Keterangan"
+                            <textarea class="form-control" id="keterangan" name="keterangan"
                                 placeholder="Keterangan Barang" rows="3"></textarea>
                         </div>
                     </div>
