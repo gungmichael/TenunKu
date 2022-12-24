@@ -54,4 +54,39 @@ if (isset($_GET['id'])) {
     header("Location: index.php");
 }
 
+if ($check > 0) {
+    $data = mysqli_fetch_assoc($result);
+    $role = $data['role'];
+
+    if ($role == 'admin') {
+        $_SESSION['log'] = 'Logged';
+        $_SESSION['role'] = 'admin';
+        echo "<script>
+                    alert('login admin berhasil );
+                     document.location='dash.php';
+                    </script>";
+
+    } else {
+        $_SESSION['log'] = 'Logged';
+        $_SESSION['role'] = 'user';
+
+        echo "<script>
+                    alert('login user berhasil );
+                     document.location='index.php';
+                    </script>";
+    }
+}
+
+if (isset($_SESSION['login'])) {
+    if ($_SESSION['login'] == false) {
+        header("Location: login.php");
+    }
+} else {
+    header("Location: login.php");
+}
+
+if (isset($_POST['logout'])) {
+    logout();
+}
+
 ?>
