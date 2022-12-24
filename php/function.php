@@ -95,17 +95,12 @@ function addItems()
 
 function updateBarang()
 {
-    if (isset($_SESSION['login'])) {
-        if ($_SESSION['login'] == false) {
-            header("Location: login.php");
-            return false;
-        }
-    } else {
-        header("Location: login.php");
-        return false;
-    }
 
     global $conn;
+
+    $result = $_GET['id'];
+    $query = "SELECT * from 'barang' WHERE id_barang = '$id_barang'";
+    $result = mysqli_query($conn, $query);
 
     $id_barang = $_POST['id_barang'];
     $nama_barang = $_POST['nama_barang'];
@@ -115,13 +110,13 @@ function updateBarang()
     $id_supplier = $_POST['id_supplier'];
     $keterangan = $_POST['keterangan'];
 
-    $query = "UPDATE barang SET nama_barang = '$nama_barang', qty_barang = '$qty_barang', harga_barang = '$harga_barang', jenis_barang = '$jenis_barang', id_supplier = '$id_supplier', keterangan = '$keterangan' WHERE id_barang = $id_barang";
+    $query = "UPDATE 'barang' SET 'nama_barang' = '$nama_barang', 'qty_barang' = '$qty_barang', 'harga_barang' = '$harga_barang', 'jenis_barang' = '$jenis_barang', 'id_supplier' = '$id_supplier', 'keterangan' = '$keterangan' WHERE 'id_barang' = '$id_barang'";
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        header("Location: dashboard.php");
+        header("Location: dash.php");
     } else {
-        echo "Gagal menambahkan data";
+        echo "Gagal memperbarui data";
     }
 
 }
@@ -145,7 +140,21 @@ function login()
             exit;
         }
     }
+    return false;
 }
-return false;
 
+function deleteData()
+{
+    global $conn;
+    if (isset($_GET['deleteid']))
+        $id_barang = $_GET['id_barang'];
+    $query = "DELETE FROM barang WHERE id_barang = '$id_barang'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        header("Location: dash.php");
+    } else {
+        echo "Gagal menghapus data";
+    }
+}
 ?>

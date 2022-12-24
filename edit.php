@@ -1,10 +1,14 @@
 <?php
 include "php/function.php";
 
-$oldData = getItemsbyID($_GET['id_barang']);
+if (isset($_GET['id_barang'])) {
+    header("Location: dash.php");
+}
 
-if (isset($_POST['update'])) {
-    updateData();
+$result = getItemsbyId($_GET['id_barang']);
+
+if (isset($_POST['edit'])) {
+    updateBarang();
 }
 
 ?>
@@ -34,10 +38,10 @@ if (isset($_POST['update'])) {
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dash_penjualan">Penjualan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dash_pembeli.html">Data Pembeli</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dash_barang.html">Barang</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="dash.php">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dash_penjualan.php">Penjualan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dash_pembeli.php">Data Pembeli</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dash_barang.php">Barang</a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                 </ul>
             </div>
@@ -45,40 +49,41 @@ if (isset($_POST['update'])) {
     </nav>
 
     <div class="container">
-        <h1>Edit Data Barang</h1>
+        <h3 class="text-center mt-5">Edit Data Barang</h3><br>
 
         <form action="" method="post">
-            <input type="hidden" name="id" value="<?= $_GET['id_barang'] ?>">
+            <input type="hidden" name="id_barang" value="<?= $_GET['id_barang'] ?>">
             <div class="mb-3">
-                <label for="nama" class="form-label">Nama Barang</label>
-                <input type="text" class="form-control" id="nama" name="nama_barang" placeholder="Nama Barang"
-                    value="<?= $oldData['nama_barang'] ?>">
+                <label for="nama_barang" class="form-label">Nama Barang</label>
+                <input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="Nama Barang"
+                    value="<?php $result['nama_barang'] ?>">
             </div>
             <div class="mb-3">
-                <label for="quantity" class="form-label">Jumlah Barang</label>
-                <input type="number" class="form-control" id="quantity" name="qty_barang" placeholder="Jumlah Barang"
-                    value="<?= $oldData['qty_barang'] ?>">
+                <label for="qty_barang" class="form-label">Jumlah Barang</label>
+                <input type="number" class="form-control" id="qty_barang" name="qty_barang" placeholder="Jumlah Barang"
+                    value="<?php $result['qty_barang'] ?>">
             </div>
             <div class="mb-3">
-                <label for="harga" class="form-label">Harga Barang</label>
-                <input type="number" class="form-control" id="harga" name="harga_barang" placeholder="Harga Barang"
-                    value="<?= $oldData['harga_barang'] ?>">
+                <label for="harga_barang" class="form-label">Harga Barang</label>
+                <input type="number" class="form-control" id="harga_barang" name="harga_barang"
+                    placeholder="Harga Barang" value="<?php $result['harga_barang'] ?>">
             </div>
             <div class="mb-3">
-                <label for="harga" class="form-label">Jenis Barang</label>
-                <input type="number" class="form-control" id="harga" name="jenis_barang" placeholder="Jenis Barang"
-                    value="<?= $oldData['jenis_barang'] ?>">
+                <label for="jenis_barang" class="form-label">Jenis Barang</label>
+                <input type="number" class="form-control" id="jenis_barang" name="jenis_barang"
+                    placeholder="Jenis Barang" value="<?php $result['jenis_barang'] ?>">
             </div>
             <div class="mb-3">
-                <label for="harga" class="form-label">Pemasok Barang</label>
-                <input type="number" class="form-control" id="harga" name="id_supplier" placeholder="Jenis Barang"
-                    value="<?= $oldData['id_supplier'] ?>">
+                <label for="id_supplier" class="form-label">Pemasok Barang</label>
+                <input type="number" class="form-control" id="id_supplier" name="id_supplier" placeholder="Jenis Barang"
+                    value="<?php $result['id_supplier'] ?>">
             </div>
             <div class="mb-3">
-                <label for="deskripsi" class="form-label">Deskripsi Barang</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi"><?= $oldData['keterangan'] ?></textarea>
+                <label for="keterangan" class="form-label">Keterangan</label>
+                <textarea class="form-control" id="keterangan"
+                    name="keterangan"><?php $result['keterangan'] ?></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" name="update">Submit</button>
+            <button type="submit" class="btn btn-primary" name="edit">Submit</button>
         </form>
     </div>
 
