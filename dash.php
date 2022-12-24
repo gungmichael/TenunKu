@@ -9,10 +9,6 @@ if (isset($_SESSION['login'])) {
     header("Location: login.php");
 }
 
-if (isset($_POST['logout'])) {
-    logout();
-}
-
 
 if (isset($_POST['addItems'])) {
     addItems();
@@ -81,7 +77,6 @@ if (isset($_POST['addItems'])) {
                 </thead>
                 <tbody>
                     <?php
-                    include "php/function.php";
                     $barang = getItems();
                     $i = 1;
                     if (count($barang) > 0): ?>

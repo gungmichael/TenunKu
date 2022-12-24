@@ -73,32 +73,23 @@ function getItemsbyID($id_barang)
 
 function addItems()
 {
-    if (isset($_SESSION['login'])) {
-        if ($_SESSION['login'] == false) {
-            header("Location: login.php");
-            return false;
-        }
-    } else {
-        header("Location: login.php");
-        return false;
-    }
 
     global $conn;
 
-    $id_barang = $_POST['id_barang'];
-    $nama_barang = $_POST['nama_barang'];
-    $qty_barang = $_POST['qty_barang'];
-    $harga_barang = $_POST['harga_barang'];
-    $jenis_barang = $_POST['jenis_barang'];
-    $id_supplier = $_POST['id_supplier'];
-    $keterangan = $_POST['keterangan'];
-    $query = "INSERT INTO barang (id_barang, nama_barang, qty_barang, harga_barang, jenis_barang, id_supplier, keterangan) VALUES ('$id_barang', '$nama_barang', '$qty_barang', '$harga_barang', '$jenis_barang', '$id_supplier', '$keterangan')";
+    if (isset($_POST['nama_barang'])) {
+        $nama_barang = $_POST['nama_barang'];
+        $qty_barang = $_POST['qty_barang'];
+        $harga_barang = $_POST['harga_barang'];
+        $jenis_barang = $_POST['jenis_barang'];
+        $id_supplier = $_POST['id_supplier'];
+        $keterangan = $_POST['keterangan'];
+        $query = mysqli_query($conn, "INSERT INTO barang (nama_barang, qty_barang, harga_barang, jenis_barang, id_supplier, keterangan) VALUES ('$nama_barang', '$qty_barang', '$harga_barang', '$jenis_barang', '$id_supplier', '$keterangan')");
 
-    $result = mysqli_query($conn, $query);
-    if ($result) {
-        header("Location: dashboard.php");
-    } else {
-        echo "Gagal menambahkan data";
+        if ($query) {
+            header("Location: dash.php");
+        } else {
+            echo "Gagal menambahkan data";
+        }
     }
 }
 
@@ -139,42 +130,22 @@ function login()
 {
     global $conn;
 
-    if (isset($_POST['login'])) {
-        $email = $_POST['email'];
-        $password = $_POST['passwords'];
 
-        $result = mysqli_query($conn, "SELECT * from pengguna WHERE email='$email' and passwords ='$password'");
-        $check = mysqli_num_rows($result);
+    $email = $_POST['email'];
+    $password = $_POST['passwords'];
 
-        if ($check > 0) {
-            $data = mysqli_fetch_array($result);
-            $role = $data['role'];
+    $result = mysqli_query($conn, "SELECT * from pengguna WHERE email='$email'");
+    $check = mysqli_num_rows($result);
 
-            if ($role == 'admin') {
-                $_SESSION['log'] = 'Logged';
-                $_SESSION['role'] = 'admin';
-                echo "<script>
-                    alert('login admin berhasil );
-                     document.location='dash.php';
-                    </script>";
-
-            } else {
-                $_SESSION['log'] = 'Logged';
-                $_SESSION['role'] = 'user';
-
-                echo "<script>
-                    alert('login user berhasil );
-                     document.location='index.php';
-                    </script>";
-            }
-        } else {
-
-            echo "<script>
-            alert('login gagal : username dan password salah');
-            document.location='login.php';
-            </script>";
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row['passwords'])) {
+            $_SESSION['login'] = true;
+            header("Location: dash.php");
+            exit;
         }
-        return false;
     }
 }
+return false;
+
 ?>
