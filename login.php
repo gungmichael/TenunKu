@@ -1,12 +1,6 @@
 <?php
 include "php/function.php";
 
-if (isset($_SESSION['login'])) {
-  if ($_SESSION['login'] == true) {
-    header("location: index.php");
-  }
-}
-
 if (isset($_POST['login'])) {
   multiUser();
 }

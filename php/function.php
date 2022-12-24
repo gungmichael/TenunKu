@@ -91,7 +91,6 @@ function addItems()
     $harga_barang = $_POST['harga_barang'];
     $jenis_barang = $_POST['jenis_barang'];
     $keterangan = $_POST['keterangan'];
-    $query = "INSERT INTO barang (id_barang, nama_barang, qty_barang, harga_barang, jenis_barang, keterangan) VALUES ('$id_barang', '$nama_barang', '$qty_barang', '$harga_barang', '$jenis_barang', '$keterangan')";
 
     $result = mysqli_query($conn, $query);
     if ($result) {
