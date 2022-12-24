@@ -8,7 +8,7 @@ if (isset($_SESSION['login'])) {
 }
 
 if (isset($_POST['login'])) {
-  login();
+  multiUser();
 }
 ?>
 

@@ -40,7 +40,9 @@
                 <h3 class="text-center">Daftar Barang</h3>
             </div>
             <div class="col-2">
-                <a href="add_items.php" class="btn btn-primary">Tambah Barang</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Tambah Barang
+                </button>
             </div>
         </div>
         <div class="table-responsive">
@@ -50,12 +52,14 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Qty Barang</th>
+                        <th scope="col">Harga Barang</th>
                         <th scope="col">Jenis Barang</th>
-                        <th scope="col">Keterangan</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    include "php/function.php";
                     $barang = getItems();
                     $i = 1;
                     if (count($barang) > 0): ?>
@@ -71,10 +75,10 @@
                             <?= $item["qty_barang"] ?>
                         </td>
                         <td>
-                            <?= $item["jenis_barang"] ?>
+                            <?= $item["harga_barang"] ?>
                         </td>
                         <td>
-                            <?= $item["keterangan"] ?>
+                            <?= $item["jenis_barang"] ?>
                         </td>
                         <td>
                             <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
@@ -130,7 +134,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                         <button type="submit" class="btn btn-primary" name="tambah">Submit</button>
                     </div>
                 </form>
@@ -164,8 +167,16 @@
                             <td><?= $item["qty_barang"] ?></td>
                         </tr>
                         <tr>
+                            <th scope="row">Harga Barang</th>
+                            <td><?= $item["harga_barang"] ?></td>
+                        </tr>
+                        <tr>
                             <th scope="row">Jenis Barang</th>
                             <td><?= $item["jenis_barang"] ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pemasok</th>
+                            <td><?= $item["id_supplier"] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Keterangan</th>
