@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2022 at 03:54 AM
+-- Generation Time: Dec 24, 2022 at 09:14 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -24,26 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
---
-
-CREATE TABLE `admins` (
-  `id_admin` int(16) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `fullname` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`id_admin`, `email`, `password`, `fullname`) VALUES
-(1, 'admin@tenunku.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin Tenunku');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `barang`
 --
 
@@ -52,6 +32,7 @@ CREATE TABLE `barang` (
   `jenis_barang` int(12) NOT NULL,
   `nama_barang` varchar(255) NOT NULL,
   `qty_barang` int(12) NOT NULL,
+  `harga_barang` int(11) NOT NULL,
   `keterangan` text NOT NULL,
   `id_supplier` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -60,8 +41,8 @@ CREATE TABLE `barang` (
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `jenis_barang`, `nama_barang`, `qty_barang`, `keterangan`, `id_supplier`) VALUES
-(1, 6, 'Rangrang Motif Geometri', 35, 'Tenun Rangrang Motif Geometri yang dibuat secara simetris.', 1);
+INSERT INTO `barang` (`id_barang`, `jenis_barang`, `nama_barang`, `qty_barang`, `harga_barang`, `keterangan`, `id_supplier`) VALUES
+(1, 6, 'Rangrang Motif Geometri', 35, 450000, 'Tenun Rangrang Motif Geometri yang dibuat secara simetris.', 1);
 
 -- --------------------------------------------------------
 
@@ -117,6 +98,27 @@ CREATE TABLE `pembayaran` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pengguna`
+--
+
+CREATE TABLE `pengguna` (
+  `id` int(12) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `passwords` varchar(30) NOT NULL,
+  `role` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengguna`
+--
+
+INSERT INTO `pengguna` (`id`, `email`, `passwords`, `role`) VALUES
+(1, 'saka@gmail.com', '1234', 'admin'),
+(2, 'user@gmail.com', '1234', 'user');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `supplier`
 --
 
@@ -151,39 +153,9 @@ CREATE TABLE `transaksi` (
   `id_user` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `id_role` int(12) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `fullname` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `id_role`, `username`, `password`, `email`, `fullname`) VALUES
-(1, 1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@tenunku.com', 'Admin Tenunku'),
-(2, 2, 'gungmichael', 'e10adc3949ba59abbe56e057f20f883e', 'mikeswisnandya@gmail.com', 'I Gusti Agung Michael Swisnandya'),
-(3, 2, 'saka_pradipta', 'e10adc3949ba59abbe56e057f20f883e', 'saka.pradipta@gmail.com', 'Ketut Saka Pradipta');
-
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admins`
---
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `barang`
@@ -214,6 +186,12 @@ ALTER TABLE `pembayaran`
   ADD KEY `fk_transaksiid` (`id_transaksi`);
 
 --
+-- Indexes for table `pengguna`
+--
+ALTER TABLE `pengguna`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -228,21 +206,8 @@ ALTER TABLE `transaksi`
   ADD KEY `fk_userid` (`id_user`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_role` (`id_role`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `admins`
---
-ALTER TABLE `admins`
-  MODIFY `id_admin` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `barang`
@@ -263,6 +228,12 @@ ALTER TABLE `pembayaran`
   MODIFY `id_pembayaran` int(12) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pengguna`
+--
+ALTER TABLE `pengguna`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -273,12 +244,6 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `transaksi`
   MODIFY `id_transaksi` int(12) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -315,12 +280,6 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `fk_userid` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `fk_role` FOREIGN KEY (`id_role`) REFERENCES `level_role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
