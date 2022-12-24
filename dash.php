@@ -1,10 +1,32 @@
+<?php
+include "function.php";
+
+if (isset($_SESSION['login'])) {
+    if ($_SESSION['login'] == false) {
+        header("Location: login.php");
+    }
+} else {
+    header("Location: login.php");
+}
+
+if (isset($_POST['logout'])) {
+    logout();
+}
+
+
+if (isset($_POST['addItems'])) {
+    addItems();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - TenunKu</title>
+    <title>Dashboard - TenunKu</title>
     <meta name="description" content="E-Commerces" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -114,22 +136,34 @@
                 <form action="" method="post">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Barang</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Barang">
+                            <label for="nama_barang" class="form-label">Nama Barang</label>
+                            <input type="text" class="form-control" id="nama_barang" name="nama_barang"
+                                placeholder="Nama Barang">
                         </div>
                         <div class="mb-3">
-                            <label for="quantity" class="form-label">Jumlah Barang</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity"
+                            <label for="qty_barang" class="form-label">Jumlah Barang</label>
+                            <input type="number" class="form-control" id="qty_barang" name="qty_barang"
                                 placeholder="Jumlah Barang">
                         </div>
                         <div class="mb-3">
                             <label for="harga" class="form-label">Harga Barang</label>
-                            <input type="number" class="form-control" id="harga" name="price"
+                            <input type="number" class="form-control" id="harga_barang" name="harga_barang"
                                 placeholder="Harga Barang">
                         </div>
                         <div class="mb-3">
-                            <label for="deskripsi" class="form-label">Deskripsi Barang</label>
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+                            <label for="jenis_barang" class="form-label">Jenis Barang</label>
+                            <input type="number" class="form-control" id="deskripsi" name="deskripsi"
+                                placeholder="Jenis Barang" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_supplier" class="form-label">Pemasok</label>
+                            <input type="number" class="form-control" id="id_supplier" name="id_supplier"
+                                placeholder="Pemasok" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="keterangan" class="form-label">Keterangan Barang</label>
+                            <textarea class="form-control" id="keterangan" name="Keterangan"
+                                placeholder="Keterangan Barang" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

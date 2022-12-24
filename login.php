@@ -1,8 +1,8 @@
 <?php
-include "php/function.php";
+require "php/function.php";
 
 if (isset($_POST['login'])) {
-  multiUser();
+  login();
 }
 ?>
 
@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
         <label for="floatingInput">Email Address</label>
       </div>
       <div class="form-floating">
-        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" name="passwords" class="form-control" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Password</label>
       </div>
       <p class="mt-3">Didn't Have an Account? <a href="register.php">Register Here!</a></p>

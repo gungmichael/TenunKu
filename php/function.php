@@ -73,13 +73,13 @@ function getItemsbyID($id_barang)
 
 function addItems()
 {
-    if (isset($_SESSION['adminLogin'])) {
-        if ($_SESSION['adminLogin'] == false) {
-            header("Location: admin_login.php");
+    if (isset($_SESSION['login'])) {
+        if ($_SESSION['login'] == false) {
+            header("Location: login.php");
             return false;
         }
     } else {
-        header("Location: admin_login.php");
+        header("Location: login.php");
         return false;
     }
 
@@ -90,7 +90,9 @@ function addItems()
     $qty_barang = $_POST['qty_barang'];
     $harga_barang = $_POST['harga_barang'];
     $jenis_barang = $_POST['jenis_barang'];
+    $id_supplier = $_POST['id_supplier'];
     $keterangan = $_POST['keterangan'];
+    $query = "INSERT INTO barang (id_barang, nama_barang, qty_barang, harga_barang, jenis_barang, id_supplier, keterangan) VALUES ('$id_barang', '$nama_barang', '$qty_barang', '$harga_barang', '$jenis_barang', '$id_supplier', '$keterangan')";
 
     $result = mysqli_query($conn, $query);
     if ($result) {
@@ -100,35 +102,79 @@ function addItems()
     }
 }
 
-function multiUser()
+function updateBarang()
+{
+    if (isset($_SESSION['login'])) {
+        if ($_SESSION['login'] == false) {
+            header("Location: login.php");
+            return false;
+        }
+    } else {
+        header("Location: login.php");
+        return false;
+    }
+
+    global $conn;
+
+    $id_barang = $_POST['id_barang'];
+    $nama_barang = $_POST['nama_barang'];
+    $qty_barang = $_POST['qty_barang'];
+    $harga_barang = $_POST['harga_barang'];
+    $jenis_barang = $_POST['jenis_barang'];
+    $id_supplier = $_POST['id_supplier'];
+    $keterangan = $_POST['keterangan'];
+
+    $query = "UPDATE barang SET nama_barang = '$nama_barang', qty_barang = '$qty_barang', harga_barang = '$harga_barang', jenis_barang = '$jenis_barang', id_supplier = '$id_supplier', keterangan = '$keterangan' WHERE id_barang = $id_barang";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        header("Location: dashboard.php");
+    } else {
+        echo "Gagal menambahkan data";
+    }
+
+}
+
+function login()
 {
     global $conn;
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    if (isset($_POST['login'])) {
+        $email = $_POST['email'];
+        $password = $_POST['passwords'];
 
-    $result = mysqli_query($conn, "SELECT * from user WHERE email='$email' and password='$password'");
-    $check = mysqli_num_rows($result);
+        $result = mysqli_query($conn, "SELECT * from pengguna WHERE email='$email' and passwords ='$password'");
+        $check = mysqli_num_rows($result);
 
-    if ($check > 0) {
-        $data = mysqli_fetch_assoc($result);
+        if ($check > 0) {
+            $data = mysqli_fetch_array($result);
+            $role = $data['role'];
 
-        if ($data['id_role'] == "1") {
-            $_SESSION['email'] = $email;
-            $_SESSION['id_role'] = "1";
+            if ($role == 'admin') {
+                $_SESSION['log'] = 'Logged';
+                $_SESSION['role'] = 'admin';
+                echo "<script>
+                    alert('login admin berhasil );
+                     document.location='dash.php';
+                    </script>";
 
-            header("Location: dash.php");
+            } else {
+                $_SESSION['log'] = 'Logged';
+                $_SESSION['role'] = 'user';
 
-        } else if ($data['id_role'] == "2") {
-            $_SESSION['email'] = $email;
-            $_SESSION['id_role'] == "2";
-
-            header("Location: index.php");
+                echo "<script>
+                    alert('login user berhasil );
+                     document.location='index.php';
+                    </script>";
+            }
         } else {
-            header("Location: login.php?message=failed");
+
+            echo "<script>
+            alert('login gagal : username dan password salah');
+            document.location='login.php';
+            </script>";
         }
-    } else {
-        header("Location: login.php?message=failed");
+        return false;
     }
 }
 ?>

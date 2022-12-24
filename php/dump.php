@@ -45,4 +45,13 @@ function logoutAdmin()
     header("Location: admin_login.php");
     exit;
 }
+
+if ($_SESSION['login'] == false && isset($_SESSION['login'])) {
+    header("Location: login.php");
+}
+
+if (isset($_GET['id'])) {
+    header("Location: index.php");
+}
+
 ?>
