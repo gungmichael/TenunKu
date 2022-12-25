@@ -110,7 +110,7 @@ function updateBarang()
     $id_supplier = $row['id_supplier'];
     $keterangan = $row['keterangan'];
 
-    if (isset($_POST['edit'])) {
+    if (isset($_POST['submit'])) {
         $id_barang = $_POST['id_barang'];
         $nama_barang = $_POST['nama_barang'];
         $qty_barang = $_POST['qty_barang'];

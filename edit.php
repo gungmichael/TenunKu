@@ -83,7 +83,8 @@ if (isset($_POST['edit'])) {
                 <textarea class="form-control" id="keterangan"
                     name="keterangan"><?php $result['keterangan'] ?></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" name="edit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <a href="dash.php" class="btn btn-default">Cancel</a>
         </form>
     </div>
 
