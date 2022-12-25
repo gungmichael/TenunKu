@@ -97,18 +97,18 @@ function updateBarang()
 {
 
     global $conn;
+    
+        $id_barang = $_POST['id_barang'];
+        $nama_barang = $_POST['nama_barang'];
+        $qty_barang = $_POST['qty_barang'];
+        $harga_barang = $_POST['harga_barang'];
+        $jenis_barang = $_POST['jenis_barang'];
+        $id_supplier = $_POST['id_supplier'];
+        $keterangan = $_POST['keterangan'];
 
     $result = $_GET['id'];
     $query = "SELECT * from 'barang' WHERE id_barang = '$id_barang'";
     $result = mysqli_query($conn, $query);
-
-    $id_barang = $_POST['id_barang'];
-    $nama_barang = $_POST['nama_barang'];
-    $qty_barang = $_POST['qty_barang'];
-    $harga_barang = $_POST['harga_barang'];
-    $jenis_barang = $_POST['jenis_barang'];
-    $id_supplier = $_POST['id_supplier'];
-    $keterangan = $_POST['keterangan'];
 
     $query = "UPDATE 'barang' SET 'nama_barang' = '$nama_barang', 'qty_barang' = '$qty_barang', 'harga_barang' = '$harga_barang', 'jenis_barang' = '$jenis_barang', 'id_supplier' = '$id_supplier', 'keterangan' = '$keterangan' WHERE 'id_barang' = '$id_barang'";
     $result = mysqli_query($conn, $query);
