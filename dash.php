@@ -34,9 +34,16 @@ if (isset($_POST['addItems'])) {
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dash_penjualan">Penjualan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dash_pembeli.html">Data Pembeli</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dash_barang.html">Barang</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Data-data</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="dash_barang.php">Data Barang</a></li>
+                            <li><a class="dropdown-item" href="dash_supplier.php">Data Supplier</a></li>
+                            <li><a class="dropdown-item" href="dash_user.php">Data Pengguna</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="dash_transaksi.html">Data Transaksi</a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                 </ul>
             </div>

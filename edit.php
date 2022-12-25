@@ -5,7 +5,7 @@ if (isset($_GET['id_barang'])) {
     header("Location: dash.php");
 }
 
-$result = getItemsbyId($_GET['id_barang']);
+$result = getItemsbyId($_GET['id']);
 
 if (isset($_POST['edit'])) {
     updateBarang();

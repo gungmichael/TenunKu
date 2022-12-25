@@ -60,7 +60,8 @@ function getItemsbyID($id_barang)
 {
     global $conn;
 
-    $query = "SELECT * FROM barang WHERE id_barang = $id_barang";
+    $id_barang = $_GET['id'];
+    $query = "SELECT * FROM barang WHERE id_barang = '$id_barang'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 
@@ -97,7 +98,19 @@ function updateBarang()
 {
 
     global $conn;
-    
+
+    $id_barang = $_GET['id'];
+    $query = "SELECT * from 'barang' WHERE id_barang = '$id_barang'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $nama_barang = $row['nama_barang'];
+    $qty_barang = $row['qty_barang'];
+    $harga_barang = $row['harga_barang'];
+    $jenis_barang = $row['jenis_barang'];
+    $id_supplier = $row['id_supplier'];
+    $keterangan = $row['keterangan'];
+
+    if (isset($_POST['edit'])) {
         $id_barang = $_POST['id_barang'];
         $nama_barang = $_POST['nama_barang'];
         $qty_barang = $_POST['qty_barang'];
@@ -106,19 +119,15 @@ function updateBarang()
         $id_supplier = $_POST['id_supplier'];
         $keterangan = $_POST['keterangan'];
 
-    $result = $_GET['id'];
-    $query = "SELECT * from 'barang' WHERE id_barang = '$id_barang'";
-    $result = mysqli_query($conn, $query);
+        $query = "UPDATE 'barang' SET 'nama_barang' = '$nama_barang', 'qty_barang' = '$qty_barang', 'harga_barang' = '$harga_barang', 'jenis_barang' = '$jenis_barang', 'id_supplier' = '$id_supplier', 'keterangan' = '$keterangan' WHERE 'id_barang' = '$id_barang'";
+        $result = mysqli_query($conn, $query);
 
-    $query = "UPDATE 'barang' SET 'nama_barang' = '$nama_barang', 'qty_barang' = '$qty_barang', 'harga_barang' = '$harga_barang', 'jenis_barang' = '$jenis_barang', 'id_supplier' = '$id_supplier', 'keterangan' = '$keterangan' WHERE 'id_barang' = '$id_barang'";
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        header("Location: dash.php");
-    } else {
-        echo "Gagal memperbarui data";
+        if ($result) {
+            header("Location: dash.php");
+        } else {
+            echo "Gagal memperbarui data";
+        }
     }
-
 }
 
 function login()
@@ -146,8 +155,8 @@ function login()
 function deleteData()
 {
     global $conn;
-    if (isset($_GET['deleteid']))
-        $id_barang = $_GET['id_barang'];
+    if (isset($_GET['id']))
+        $id_barang = $_GET['id'];
     $query = "DELETE FROM barang WHERE id_barang = '$id_barang'";
     $result = mysqli_query($conn, $query);
 
