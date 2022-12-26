@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2022 at 09:14 AM
+-- Generation Time: Dec 26, 2022 at 12:55 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -29,20 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `barang` (
   `id_barang` int(12) NOT NULL,
-  `jenis_barang` int(12) NOT NULL,
   `nama_barang` varchar(255) NOT NULL,
   `qty_barang` int(12) NOT NULL,
   `harga_barang` int(11) NOT NULL,
-  `keterangan` text NOT NULL,
-  `id_supplier` int(12) NOT NULL
+  `jenis_barang` int(12) NOT NULL,
+  `id_supplier` int(12) NOT NULL,
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `jenis_barang`, `nama_barang`, `qty_barang`, `harga_barang`, `keterangan`, `id_supplier`) VALUES
-(1, 6, 'Rangrang Motif Geometri', 35, 450000, 'Tenun Rangrang Motif Geometri yang dibuat secara simetris.', 1);
+INSERT INTO `barang` (`id_barang`, `nama_barang`, `qty_barang`, `harga_barang`, `jenis_barang`, `id_supplier`, `keterangan`) VALUES
+(1, 'Rangrang Motif Geometri', 35, 450000, 6, 1, 'Tenun Rangrang Motif Geometri yang dibuat secara simetris.'),
+(20, 'Endek Biru', 45, 345000, 5, 3, 'Endek Sidemen');
 
 -- --------------------------------------------------------
 
@@ -213,7 +214,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_barang` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `jenis_barang`
