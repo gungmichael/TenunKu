@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2022 at 12:55 PM
+-- Generation Time: Dec 27, 2022 at 06:55 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -85,6 +85,34 @@ INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `iduser` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `notelp` varchar(15) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `tgldaftar` timestamp NOT NULL DEFAULT current_timestamp(),
+  `role` varchar(7) NOT NULL DEFAULT 'Member',
+  `lastlogin` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`iduser`, `nama`, `email`, `password`, `notelp`, `alamat`, `tgldaftar`, `role`, `lastlogin`) VALUES
+(1, 'Admin', 'admin@tenun.com', 'tenunku', '01234567890', 'Indonesia', '2021-12-16 03:31:17', 'Admin', NULL),
+(24, 'ketut saka pradipta', 'admin1@tenun.com', 'saka12345', '081338210729', 'banjar jawa', '2022-12-27 07:40:59', 'Admin', NULL),
+(29, 'saka pradipta', 'psychosakapradipta@gmail.com', '$2y$10$yp.kUscIZ.o8OYjcbLaVLOtVpgz9duIt5qYIFmBNsKEjtiQpH13Zq', '081338210729', '-', '2022-12-27 08:05:49', 'Member', NULL),
+(30, 'Anone Anone', 'michaelswisnandya15@gmail.com', '$2y$10$veXJWWAlmW07FgXFVb9XYOaklC1i0MkvMHaEUXrm2/JaTgw3r2y86', '085337250315', 'Jl. Astina Pura II, Ds Rendang, Kec. Rendang, Karangasem', '2022-12-27 17:30:45', 'Member', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pembayaran`
 --
 
@@ -99,27 +127,6 @@ CREATE TABLE `pembayaran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengguna`
---
-
-CREATE TABLE `pengguna` (
-  `id` int(12) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `passwords` varchar(30) NOT NULL,
-  `role` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pengguna`
---
-
-INSERT INTO `pengguna` (`id`, `email`, `passwords`, `role`) VALUES
-(1, 'saka@gmail.com', '1234', 'admin'),
-(2, 'user@gmail.com', '1234', 'user');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `supplier`
 --
 
@@ -127,6 +134,7 @@ CREATE TABLE `supplier` (
   `id_supplier` int(12) NOT NULL,
   `kode_jenis` int(12) NOT NULL,
   `nama_supplier` varchar(255) NOT NULL,
+  `no_hp` int(14) NOT NULL,
   `alamat_supplier` varchar(255) NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -135,10 +143,10 @@ CREATE TABLE `supplier` (
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`id_supplier`, `kode_jenis`, `nama_supplier`, `alamat_supplier`, `keterangan`) VALUES
-(1, 6, 'Rang Tenun', 'Seraya Barat', 'Penghasil Tenun Rangrang'),
-(2, 2, 'Lokakarya', 'Sidemen', 'Penghasil Tenun Songket'),
-(3, 5, 'SIDHIMAN', 'Desa Tebola, Sidemen', 'Penghasil Tenun Endek');
+INSERT INTO `supplier` (`id_supplier`, `kode_jenis`, `nama_supplier`, `no_hp`, `alamat_supplier`, `keterangan`) VALUES
+(1, 6, 'Rang Tenun', 0, 'Seraya Barat', 'Penghasil Tenun Rangrang'),
+(2, 2, 'Lokakarya', 0, 'Sidemen', 'Penghasil Tenun Songket'),
+(3, 5, 'SIDHIMAN', 0, 'Desa Tebola, Sidemen', 'Penghasil Tenun Endek');
 
 -- --------------------------------------------------------
 
@@ -180,17 +188,17 @@ ALTER TABLE `jenis_barang`
   ADD PRIMARY KEY (`kode_jenis`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`iduser`);
+
+--
 -- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_pembayaran`),
   ADD KEY `fk_transaksiid` (`id_transaksi`);
-
---
--- Indexes for table `pengguna`
---
-ALTER TABLE `pengguna`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `supplier`
@@ -223,16 +231,16 @@ ALTER TABLE `jenis_barang`
   MODIFY `kode_jenis` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   MODIFY `id_pembayaran` int(12) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pengguna`
---
-ALTER TABLE `pengguna`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `supplier`
