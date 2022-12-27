@@ -55,6 +55,23 @@ function getItems()
         return false;
     }
 }
+function getSupplier()
+{
+    global $conn;
+
+    $query = "SELECT * FROM supplier";
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    if ($result) {
+        return $rows;
+    } else {
+        return false;
+    }
+}
 
 function getItemsbyID($id_barang)
 {
@@ -87,7 +104,27 @@ function addItems()
         $query = mysqli_query($conn, "INSERT INTO barang (nama_barang, qty_barang, harga_barang, jenis_barang, id_supplier, keterangan) VALUES ('$nama_barang', '$qty_barang', '$harga_barang', '$jenis_barang', '$id_supplier', '$keterangan')");
 
         if ($query) {
-            header("Location: dash.php");
+            header("Location: itemsdata.php");
+        } else {
+            echo "Gagal menambahkan data";
+        }
+    }
+}
+function addSuppliers()
+{
+
+    global $conn;
+
+    if (isset($_POST['nama_supplier'])) {
+        $kode_jenis = $_POST['kode_jenis'];
+        $nama_supplier = $_POST['nama_supplier'];
+        $no_hp = $_POST['no_hp'];
+        $alamat_supplier = $_POST['alamat_supplier'];
+        $keterangan = $_POST['keterangan'];
+        $query = mysqli_query($conn, "INSERT INTO supplier (kode_jenis, nama_supplier, no_hp, alamat_supplier, keterangan) VALUES ('$kode_jenis', '$nama_supplier', '$no_hp', '$alamat_supplier', '$keterangan')");
+
+        if ($query) {
+            header("Location: suppliersdata.php");
         } else {
             echo "Gagal menambahkan data";
         }
