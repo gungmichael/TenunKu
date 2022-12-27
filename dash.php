@@ -33,7 +33,7 @@ if (isset($_POST['addItems'])) {
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">Dashboard</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Data-data</a>
@@ -49,6 +49,62 @@ if (isset($_POST['addItems'])) {
             </div>
         </div>
     </nav>
+
+    <header>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="img/vintage-golden-floral-background-remix-from-artwork-by-william-morris.jpg"
+            class="img-fluid w-100 h-200" />
+
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>Cari kain Tenun anda disini!</h1>
+              <p>Berbagai macam pilihan kain tenun yang berasal dari berbagai daerah di Bali.</p>
+              <p><a class="btn btn-lg btn-primary" href="#ourproduk">Explore Now</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/Yuk-Koleksi-Kain-Tenun-Khas-Indonesia-Ini.jpg" class="img-fluid w-100 h-200" />
+
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Pengiriman ke seluruh dunia</h1>
+              <p>Kami telah berpengalaman melayani pembelian kain dari berbagai negara di dunia</p>
+              <p><a class="btn btn-lg btn-primary" href="carts.html">Belanja Sekarang</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/5daee14e2fab7.jpg" class="img-fluid w-100 h-200" />
+
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>Mendukung UMKM Lokal</h1>
+              <p>Platform ini dibuat bertujuan untuk mendukung pelaku UMKM Lokal dalam mendistribusikannya ke dunia
+                internasional</p>
+              <p><a class="btn btn-lg btn-primary" href="#ourproduk">Lihat Produk</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </header>
 
     <div class="container">
 
