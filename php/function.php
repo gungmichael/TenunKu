@@ -55,6 +55,24 @@ function getItems()
         return false;
     }
 }
+function getUsers()
+{
+    global $conn;
+
+    $query = "SELECT * FROM login";
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    if ($result) {
+        return $rows;
+    } else {
+        return false;
+    }
+}
+
 function getSupplier()
 {
     global $conn;
@@ -70,6 +88,68 @@ function getSupplier()
         return $rows;
     } else {
         return false;
+    }
+}
+function getTenun()
+{
+    global $conn;
+
+    $query = "SELECT * FROM jenis_barang";
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    if ($result) {
+        return $rows;
+    } else {
+        return false;
+    }
+}
+
+function addTenun()
+{
+    global $conn;
+
+    if (isset($_POST['addPict'])) {
+        $pict_tenun = $_POST['pict_tenun'];
+        $nama_jenis = $_POST['nama_jenis'];
+        $keterangan = $_POST['keterangan'];
+
+        $filename = $_FILES['pictupload']['names'];
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $rand = crypt($filename, time());
+        $filesize = $_FILES['pictupload']['size'];
+        $filetype = $_FILES['pictupload']['type'];
+        $filetmp = $_FILES['pictupload']['tmp_name'];
+        $path = "../img/product/" . $rand . '.' . $ext;
+        $pathdb = "product/" . $rand . '.' . $ext;
+
+        if ($filetype == "image/jpg" || $filetype == "image/jpeg" || $filetype == "image/png") {
+            if ($filesize <= 10000000) {
+                if (move_uploaded_file($filetmp, $path)) {
+                    $query = "INSERT INTO jenis_barang (pict_tenun, nama_jenis, keterangan) VALUES ('$pict_tenun', '$nama_jenis', '$keterangan')";
+                    $result = mysqli_query($conn, $query);
+
+                    if ($result) {
+                        echo "<br> <meta http-equiv='refresh' content='5; URL=tenundata.php'> Anda akan kembali ke form dalam beberapa detik";
+                    } else {
+                        echo "Maaf, terdapat masalah dalam memproses data.";
+                        echo "<br> <meta http-equiv='refresh' content='5; URL=tenundata.php'> Anda akan kembali ke form dalam beberapa detik";
+                    }
+                } else {
+                    echo "Maaf, terdapat masalah pada pengunggahan gambar.";
+                    echo "<br> <meta http-equiv='refresh' content='5; URL=tenundata.php'> Anda akan kembali ke form dalam beberapa detik";
+                }
+            } else {
+                echo "Maaf, ukuran file yang diunggah tidak lebih dari 10 MB.";
+                echo "<br> <meta http-equiv='refresh' content='5; URL=tenundata.php'> Anda akan kembali ke form dalam beberapa detik";
+            }
+        } else {
+            echo "Maaf, format gambar seharusnya adalah JPG, JPEG atau PNG.";
+            echo "<br> <meta http-equiv='refresh' content='5; URL=tenundata.php'> Anda akan kembali ke form dalam beberapa detik";
+        }
     }
 }
 
