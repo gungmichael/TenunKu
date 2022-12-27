@@ -173,6 +173,7 @@ if (isset($_POST['addItems'])) {
     <?php
     if (count($barang) > 0): ?>
     <?php foreach ($barang as $item): ?>
+        <?php $jenis = mysqli_query($conn, "SELECT from jenis_barang ORDER BY kode_jenis");?>
 
     <div class="modal fade" id="exampleModal<?= $item["id_barang"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -200,7 +201,9 @@ if (isset($_POST['addItems'])) {
                         </tr>
                         <tr>
                             <th scope="row">Jenis Barang</th>
-                            <td><?= $item["jenis_barang"] ?></td>
+                            <td><?php
+                                
+                             ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Pemasok</th>

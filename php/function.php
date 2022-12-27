@@ -60,7 +60,7 @@ function getItemsbyID($id_barang)
 {
     global $conn;
 
-    $id_barang = $_GET['id'];
+    $id_barang = $_GET['id_barang'];
     $query = "SELECT * FROM barang WHERE id_barang = '$id_barang'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
