@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2022 at 06:55 PM
+-- Generation Time: Dec 27, 2022 at 08:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -66,6 +66,7 @@ CREATE TABLE `detail_transaksi` (
 
 CREATE TABLE `jenis_barang` (
   `kode_jenis` int(12) NOT NULL,
+  `pict_tenun` varchar(255) NOT NULL,
   `nama_jenis` varchar(255) NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -74,13 +75,13 @@ CREATE TABLE `jenis_barang` (
 -- Dumping data for table `jenis_barang`
 --
 
-INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`, `keterangan`) VALUES
-(1, 'Tenun Ikat', 'Tenun ikat atau kain ikat adalah kriya tenun Indonesia berupa kain yang ditenun dari helaian benang pakan atau benang lungsin yang sebelumnya diikat dan dicelupkan ke dalam zat pewarna alami.'),
-(2, 'Tenun Songket', 'Songket digolongkan dalam keluarga tenunan brokat. Songket ditenun dengan tangan menggunakan benang emas dan perak. Benang logam metalik yang tertenun berlatar kain menimbulkan efek kemilau cemerlang.'),
-(3, 'Tenun Gringsing', 'Kata gringsing terdiri dari kata gring yang berarti \'sakit\' dan sing yang berarti \'tidak\' sehingga dapat dimaknai bahwa kain gringsing merupakan kain magis yang membuat pemakainya terhindar dari bala.'),
-(4, 'Tenun Sidemen', 'Umumnya Tenun Sidemen memiliki banyak jenis, seperti contohnya tenun endek dan songket yang memiliki ciri khas tersendiri.'),
-(5, 'Tenun Endek', 'Endek adalah kain tenun yang berasal dari Bali. Kain endek merupakan hasil dari karya seni rupa terapan, yang berarti karya seni yang dapat diterapkan dalam kehidupan sehari-hari.'),
-(6, 'Tenun Rangrang', 'Tenun Rangrang merupakan kain bebali yang berasal dari Seraya Timur dan Nusa Penida dengan motif geometris zigzag, belah ketupat, dan lajur œ lajur vertikal dengan warna-warni yang terang dengan inspirasi motif berasal dari keadaan geografis wilayahnya yaitu daerah pegunungan dan perbukitan.');
+INSERT INTO `jenis_barang` (`kode_jenis`, `pict_tenun`, `nama_jenis`, `keterangan`) VALUES
+(1, '../img/product/tenunikat.jpg', 'Tenun Ikat', 'Tenun ikat atau kain ikat adalah kriya tenun Indonesia berupa kain yang ditenun dari helaian benang pakan atau benang lungsin yang sebelumnya diikat dan dicelupkan ke dalam zat pewarna alami.'),
+(2, '../img/product/tenunsongket.jpg', 'Tenun Songket', 'Songket digolongkan dalam keluarga tenunan brokat. Songket ditenun dengan tangan menggunakan benang emas dan perak. Benang logam metalik yang tertenun berlatar kain menimbulkan efek kemilau cemerlang.'),
+(3, '../img/product/tenungringsing.jpeg', 'Tenun Gringsing', 'Kata gringsing terdiri dari kata gring yang berarti \'sakit\' dan sing yang berarti \'tidak\' sehingga dapat dimaknai bahwa kain gringsing merupakan kain magis yang membuat pemakainya terhindar dari bala.'),
+(4, '../img/product/songketsidemen.jpg', 'Tenun Sidemen', 'Umumnya Tenun Sidemen memiliki banyak jenis, seperti contohnya tenun endek dan songket yang memiliki ciri khas tersendiri.'),
+(5, '../img/product/tenunendek.jpg', 'Tenun Endek', 'Endek adalah kain tenun yang berasal dari Bali. Kain endek merupakan hasil dari karya seni rupa terapan, yang berarti karya seni yang dapat diterapkan dalam kehidupan sehari-hari.'),
+(6, '../img/product/tenunrangrang.jpg', 'Tenun Rangrang', 'Tenun Rangrang merupakan kain bebali yang berasal dari Seraya Timur dan Nusa Penida dengan motif geometris zigzag, belah ketupat, dan lajur œ lajur vertikal dengan warna-warni yang terang dengan inspirasi motif berasal dari keadaan geografis wilayahnya yaitu daerah pegunungan dan perbukitan.');
 
 -- --------------------------------------------------------
 
