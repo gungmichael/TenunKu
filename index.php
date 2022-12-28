@@ -1,3 +1,37 @@
+<?php
+if (!isset($_SESSION['log'])) {
+  echo '';
+} else {
+  if ($_SESSION['role'] == 'Member') {
+    echo '
+          <li class="nav-item nav-dark">
+            <a class="nav-link" href="index.php">
+            Halo, ' . $_SESSION["name"] . '</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="logout.php">
+            Keluar</a>
+          </li>
+        ';
+  } else {
+    echo '
+        <li class="nav-item nav-dark">
+            <a class="nav-link" href="index.php">
+            Halo, ' . $_SESSION["name"] . '</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="admin/index.php">
+          Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">
+          Keluar</a>
+        </li>
+        ';
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +74,7 @@
           <li class="nav-item"><a class="nav-link" href="#logoOur">Explore</a></li>
           <li class="nav-item"><a class="nav-link" href="carts.html">Carts</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
         </ul>
       </div>
     </div>

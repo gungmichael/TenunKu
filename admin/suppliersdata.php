@@ -14,7 +14,7 @@ if (isset($_POST['addSuppliers'])) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Items Data - TenunKu</title>
+    <title>Suppliers Data - TenunKu</title>
     <meta name="description" content="E-Commerces" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -79,18 +79,21 @@ if (isset($_POST['addSuppliers'])) {
                 <tbody>
                     <?php
                     $suppliers = getSupplier();
+                    $jenis = mysqli_query($conn, "SELECT * from jenis_barang j, supplier s WHERE j.kode_jenis=s.kode_jenis ORDER BY id_supplier ASC");
                     $i = 1;
                     if (count($suppliers) > 0): ?>
                     <?php foreach ($suppliers as $item): ?>
+                    <?php while ($item = mysqli_fetch_array($jenis)) {
+                    ?>
                     <tr>
                         <th>
-                            <?= $i ?>
+                            <?= $i++ ?>
                         </th>
                         <td>
                             <?= $item["nama_supplier"] ?>
                         </td>
                         <td>
-                            <?= $item["kode_jenis"] ?>
+                            <?= $item["nama_jenis"] ?>
                         </td>
                         <td>
                             <?= $item["alamat_supplier"] ?>
@@ -108,7 +111,9 @@ if (isset($_POST['addSuppliers'])) {
                                 class="btn btn-danger btn-sm">Hapus</a>
                         </td>
                     </tr>
-                    <?php $i++; ?>
+                    <?php
+                            }
+                    ?>
                     <?php endforeach; ?>
                     <?php else: ?>
                     <tr>

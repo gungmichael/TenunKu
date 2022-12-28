@@ -178,10 +178,10 @@ function addItems()
         $nama_barang = $_POST['nama_barang'];
         $qty_barang = $_POST['qty_barang'];
         $harga_barang = $_POST['harga_barang'];
-        $jenis_barang = $_POST['jenis_barang'];
+        $kode_jenis = $_POST['kode_jenis'];
         $id_supplier = $_POST['id_supplier'];
         $keterangan = $_POST['keterangan'];
-        $query = mysqli_query($conn, "INSERT INTO barang (nama_barang, qty_barang, harga_barang, jenis_barang, id_supplier, keterangan) VALUES ('$nama_barang', '$qty_barang', '$harga_barang', '$jenis_barang', '$id_supplier', '$keterangan')");
+        $query = mysqli_query($conn, "INSERT INTO barang (nama_barang, qty_barang, harga_barang, kode_jenis, id_supplier, keterangan) VALUES ('$nama_barang', '$qty_barang', '$harga_barang', '$kode_jenis', '$id_supplier', '$keterangan')");
 
         if ($query) {
             header("Location: itemsdata.php");
@@ -223,7 +223,7 @@ function updateBarang()
     $nama_barang = $row['nama_barang'];
     $qty_barang = $row['qty_barang'];
     $harga_barang = $row['harga_barang'];
-    $jenis_barang = $row['jenis_barang'];
+    $kode_jenis = $row['kode_jenis'];
     $id_supplier = $row['id_supplier'];
     $keterangan = $row['keterangan'];
 
@@ -232,11 +232,11 @@ function updateBarang()
         $nama_barang = $_POST['nama_barang'];
         $qty_barang = $_POST['qty_barang'];
         $harga_barang = $_POST['harga_barang'];
-        $jenis_barang = $_POST['jenis_barang'];
+        $kode_jenis = $_POST['kode_jenis'];
         $id_supplier = $_POST['id_supplier'];
         $keterangan = $_POST['keterangan'];
 
-        $query = "UPDATE 'barang' SET 'nama_barang' = '$nama_barang', 'qty_barang' = '$qty_barang', 'harga_barang' = '$harga_barang', 'jenis_barang' = '$jenis_barang', 'id_supplier' = '$id_supplier', 'keterangan' = '$keterangan' WHERE 'id_barang' = '$id_barang'";
+        $query = "UPDATE 'barang' SET 'nama_barang' = '$nama_barang', 'qty_barang' = '$qty_barang', 'harga_barang' = '$harga_barang', 'kode_jenis' = '$kode_jenis', 'id_supplier' = '$id_supplier', 'keterangan' = '$keterangan' WHERE 'id_barang' = '$id_barang'";
         $result = mysqli_query($conn, $query);
 
         if ($result) {

@@ -1,3 +1,9 @@
+<?php
+include "../php/function.php";
+
+$users = getUsers();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,9 +62,9 @@
 
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1 class="text-dark">Cari kain Tenun anda disini!</h1>
-              <p class="text-dark">Berbagai macam pilihan kain tenun yang berasal dari berbagai daerah di Bali.</p>
-              <p><a class="btn btn-lg btn-primary" href="#ourproduk">Explore Now</a></p>
+              <h1 class="text-dark">Selamat Datang di Bagian Admin!</h1>
+              <p class="text-dark"></p>
+              <p><a class="btn btn-lg btn-primary" href="#ourproduk">Lihat Data</a></p>
             </div>
           </div>
         </div>
@@ -67,9 +73,9 @@
 
           <div class="container">
             <div class="carousel-caption">
-              <h1 class="text-dark">Pengiriman ke seluruh dunia</h1>
-              <p class="text-dark">Kami telah berpengalaman melayani pembelian kain dari berbagai negara di dunia</p>
-              <p><a class="btn btn-lg btn-primary" href="carts.html">Belanja Sekarang</a></p>
+              <h1 class="text-dark">Selamat Datang di Bagian Admin!</h1>
+              <p class="text-dark"></p>
+              <p><a class="btn btn-lg btn-primary" href="carts.html">Lihat Data</a></p>
             </div>
           </div>
         </div>
@@ -78,11 +84,10 @@
 
           <div class="container">
             <div class="carousel-caption text-end">
-              <h1 class="text-dark">Mendukung UMKM Lokal</h1>
-              <p class="text-dark">Platform ini dibuat bertujuan untuk mendukung pelaku UMKM Lokal dalam
-                mendistribusikannya ke dunia
-                internasional</p>
-              <p><a class="btn btn-lg btn-primary" href="#ourproduk">Lihat Produk</a></p>
+              <h1 class="text-dark">Selamat Datang di Bagian Admin!</h1>
+              <p class="text-dark">
+              </p>
+              <p><a class="btn btn-lg btn-primary" href="#ourproduk">Lihat Data</a></p>
             </div>
           </div>
         </div>

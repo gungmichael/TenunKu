@@ -1,5 +1,11 @@
 <?php
 include "../php/function.php";
+
+
+if (isset($_POST['addItems'])) {
+    addItems();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +14,7 @@ include "../php/function.php";
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tenun Data - TenunKu</title>
+    <title>Transaction Data - TenunKu</title>
     <meta name="description" content="E-Commerces" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -50,7 +56,7 @@ include "../php/function.php";
 
         <div class="row bg-light rounded p-3 my-3">
             <div class="col-10">
-                <h3 class="text-center">Daftar Pengguna</h3>
+                <h3 class="text-center">Daftar Transaksi</h3>
             </div>
         </div>
         <div class="table-responsive">
@@ -58,46 +64,52 @@ include "../php/function.php";
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Nama Lengkap</th>
-                        <th scope="col">E-Mail</th>
-                        <th scope="col">Nomor Telepon</th>
-                        <th scope="col">Dibuat Pada</th>
+                        <th scope="col">ID User</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Waktu Transaksi</th>
+                        <th scope="col">Keterangan</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $users = getUsers();
+                    $barang = getItems();
+                    $jenis = mysqli_query($conn, "SELECT * from jenis_barang j, barang b WHERE j.kode_jenis=b.kode_jenis ORDER BY id_barang ASC");
                     $i = 1;
-                    if (count($users) > 0): ?>
-                    <?php foreach ($users as $item): ?>
+                    if (count($barang) > 0): ?>
+                    <?php foreach ($barang as $item):
+                    ?>
+                    <?php while ($item = mysqli_fetch_array($jenis)) {
+                    ?>
                     <tr>
                         <th>
-                            <?= $i ?>
+                            <?= $i++ ?>
                         </th>
                         <td>
-                            <?= $item["nama"] ?>
+                            <?= $item["nama_barang"] ?>
                         </td>
                         <td>
-                            <?= $item["email"] ?>
+                            <?= $item["qty_barang"] ?>
                         </td>
                         <td>
-                            <?= $item["notelp"] ?>
+                            <?= $item["harga_barang"] ?>
                         </td>
                         <td>
-                            <?= $item["alamat"] ?>
+                            <?= $item["nama_jenis"] ?>
                         </td>
                         <td>
                             <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal<?= $item["iduser"] ?>">
+                                data-bs-target="#exampleModal<?= $item["id_barang"] ?>">
                                 Detail
                             </button>
-                            <a href="delete.php?id=<?= $item['iduser'] ?>"
+                            <a href="delete.php?id=<?= $item['id_barang'] ?>"
                                 onclick="confirm('Yakin untuk menghapus data ini?')"
                                 class="btn btn-danger btn-sm">Hapus</a>
                         </td>
                     </tr>
-                    <?php $i++; ?>
+                    <?php
+                            }
+                    ?>
                     <?php endforeach; ?>
                     <?php else: ?>
                     <tr>
@@ -109,11 +121,62 @@ include "../php/function.php";
         </div>
     </div>
 
-    <?php
-    if (count($users) > 0): ?>
-    <?php foreach ($users as $item): ?>
 
-    <div class="modal fade" id="exampleModal<?= $item["iduser"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nama_barang" class="form-label">Nama Barang</label>
+                            <input type="text" class="form-control" id="nama_barang" name="nama_barang"
+                                placeholder="Nama Barang">
+                        </div>
+                        <div class="mb-3">
+                            <label for="qty_barang" class="form-label">Jumlah Barang</label>
+                            <input type="number" class="form-control" id="qty_barang" name="qty_barang"
+                                placeholder="Jumlah Barang">
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga Barang</label>
+                            <input type="number" class="form-control" id="harga_barang" name="harga_barang"
+                                placeholder="Harga Barang">
+                        </div>
+                        <div class="mb-3">
+                            <label for="kode_jenis" class="form-label">Jenis Barang</label>
+                            <input type="number" class="form-control" id="deskripsi" name="kode_jenis"
+                                placeholder="Jenis Barang" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_supplier" class="form-label">Pemasok</label>
+                            <input type="number" class="form-control" id="id_supplier" name="id_supplier"
+                                placeholder="Pemasok" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="keterangan" class="form-label">Keterangan Barang</label>
+                            <textarea class="form-control" id="keterangan" name="keterangan"
+                                placeholder="Keterangan Barang" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="addItems">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <?php
+    if (count($barang) > 0): ?>
+    <?php foreach ($barang as $item): ?>
+
+    <div class="modal fade" id="exampleModal<?= $item["id_barang"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -124,30 +187,26 @@ include "../php/function.php";
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Nama Pengguna</th>
-                            <td scope="col"><?= $item["nama"] ?></td>
+                            <th scope="col">Nama Barang</th>
+                            <td scope="col"><?= $item["nama_barang"] ?></td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">Email</th>
-                            <td><?= $item["email"] ?></td>
+                            <th scope="row">Jumlah Barang</th>
+                            <td><?= $item["qty_barang"] ?></td>
                         </tr>
                         <tr>
-                            <th scope="row">Nomor Telepon</th>
-                            <td><?= $item["notelp"] ?></td>
+                            <th scope="row">Harga Barang</th>
+                            <td><?= $item["harga_barang"] ?></td>
                         </tr>
                         <tr>
-                            <th scope="row">Alamat</th>
-                            <td><?= $item["alamat"] ?></td>
+                            <th scope="row">Pemasok</th>
+                            <td><?= $item["id_supplier"] ?></td>
                         </tr>
                         <tr>
-                            <th scope="row">Role</th>
-                            <td><?= $item["role"] ?></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Dibuat Pada</th>
-                            <td><?= $item["tgldaftar"] ?></td>
+                            <th scope="row">Keterangan</th>
+                            <td><?= $item["keterangan"] ?></td>
                         </tr>
                     </tbody>
                 </table>

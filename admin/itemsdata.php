@@ -79,13 +79,16 @@ if (isset($_POST['addItems'])) {
                 <tbody>
                     <?php
                     $barang = getItems();
-                    $jenis = getTenun();
+                    $jenis = mysqli_query($conn, "SELECT * from jenis_barang j, barang b WHERE j.kode_jenis=b.kode_jenis ORDER BY id_barang ASC");
                     $i = 1;
                     if (count($barang) > 0): ?>
-                    <?php foreach ($barang as $item): ?>
+                    <?php foreach ($barang as $item):
+                    ?>
+                    <?php while ($item = mysqli_fetch_array($jenis)) {
+                    ?>
                     <tr>
                         <th>
-                            <?= $i ?>
+                            <?= $i++ ?>
                         </th>
                         <td>
                             <?= $item["nama_barang"] ?>
@@ -97,7 +100,7 @@ if (isset($_POST['addItems'])) {
                             <?= $item["harga_barang"] ?>
                         </td>
                         <td>
-                            <?= $jenis["nama_jenis"] ?>
+                            <?= $item["nama_jenis"] ?>
                         </td>
                         <td>
                             <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
@@ -109,7 +112,9 @@ if (isset($_POST['addItems'])) {
                                 class="btn btn-danger btn-sm">Hapus</a>
                         </td>
                     </tr>
-                    <?php $i++; ?>
+                    <?php
+                            }
+                    ?>
                     <?php endforeach; ?>
                     <?php else: ?>
                     <tr>
@@ -147,8 +152,8 @@ if (isset($_POST['addItems'])) {
                                 placeholder="Harga Barang">
                         </div>
                         <div class="mb-3">
-                            <label for="jenis_barang" class="form-label">Jenis Barang</label>
-                            <input type="number" class="form-control" id="deskripsi" name="jenis_barang"
+                            <label for="kode_jenis" class="form-label">Jenis Barang</label>
+                            <input type="number" class="form-control" id="deskripsi" name="kode_jenis"
                                 placeholder="Jenis Barang" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
@@ -175,7 +180,6 @@ if (isset($_POST['addItems'])) {
     <?php
     if (count($barang) > 0): ?>
     <?php foreach ($barang as $item): ?>
-    <?php $jenis = mysqli_query($conn, "SELECT from jenis_barang ORDER BY kode_jenis"); ?>
 
     <div class="modal fade" id="exampleModal<?= $item["id_barang"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -200,12 +204,6 @@ if (isset($_POST['addItems'])) {
                         <tr>
                             <th scope="row">Harga Barang</th>
                             <td><?= $item["harga_barang"] ?></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Jenis Barang</th>
-                            <td><?php
-
-                            ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Pemasok</th>
