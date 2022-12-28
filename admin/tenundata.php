@@ -52,92 +52,127 @@ include "../php/function.php";
             <div class="col-10">
                 <h3 class="text-center">Jenis Tenun</h3>
             </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nama Jenis</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $tenun = getTenun();
-                    $i = 1;
-                    if (count($tenun) > 0): ?>
-                    <?php foreach ($tenun as $item): ?>
-                    <tr>
-                        <th>
-                            <?= $i ?>
-                        </th>
-                        <td>
-                            <?= $item["nama_jenis"] ?>
-                        </td>
-                        <td>
-                            <?= $item["keterangan"] ?>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal<?= $item["kode_jenis"] ?>">
-                                Detail
-                            </button>
-                        </td>
-                    </tr>
-                    <?php $i++; ?>
-                    <?php endforeach; ?>
-                    <?php else: ?>
-                    <tr>
-                        <td colspan="4" class="text-center">Tidak ada data</td>
-                    </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <?php
-    if (count($tenun) > 0): ?>
-    <?php foreach ($tenun as $item): ?>
-
-    <div class="modal fade" id="exampleModal<?= $item["kode_jenis"] ?>" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Gambar Tenun</th>
-                            <td scope="col"><img src="../img/product/" <?= $item["pict_tenun"] ?> width="50%"></td>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nama Jenis</th>
+                            <th scope="col">Keterangan</th>
+                            <th scope="col">Aksi</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $tenun = getTenun();
+                        $i = 1;
+                        if (count($tenun) > 0): ?>
+                        <?php foreach ($tenun as $item): ?>
                         <tr>
-                            <th scope="row">Nama Tenun</th>
-                            <td><?= $item["nama_jenis"] ?></td>
+                            <th>
+                                <?= $i ?>
+                            </th>
+                            <td>
+                                <?= $item["nama_jenis"] ?>
+                            </td>
+                            <td>
+                                <?= $item["keterangan"] ?>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal<?= $item["kode_jenis"] ?>">
+                                    Detail
+                                </button>
+                            </td>
                         </tr>
+                        <?php $i++; ?>
+                        <?php endforeach; ?>
+                        <?php else: ?>
                         <tr>
-                            <th scope="row">Keterangan</th>
-                            <td><?= $item["keterangan"] ?></td>
+                            <td colspan="4" class="text-center">Tidak ada data</td>
                         </tr>
-                        </tbody>
+                        <?php endif; ?>
+                    </tbody>
                 </table>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="" method="post">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="pict_tenun" class="form-label">Tambah Gambar</label>
+                                <input type="file" class="form-control" id="pict_tenun" name="pict_tenun"
+                                    placeholder="Tambah Gambar">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama_jenis" class="form-label">Jenis Tenun</label>
+                                <input type="text" class="form-control" id="nama_jenis" name="nama_jenis"
+                                    placeholder="Jenis Tenun">
+                            </div>
+                            <div class="mb-3">
+                                <label for="keterangan" class="form-label">Keterangan Barang</label>
+                                <textarea class="form-control" id="keterangan" name="keterangan"
+                                    placeholder="Keterangan Barang" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="addItems">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    <?php endforeach; ?>
-    <?php endif; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+
+        <?php
+        if (count($tenun) > 0): ?>
+        <?php foreach ($tenun as $item): ?>
+
+        <div class="modal fade" id="exampleModal<?= $item["kode_jenis"] ?>" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Data</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Gambar Tenun</th>
+                                <td scope="col"><?="<img class='proditem' src='$item[pict_tenun]'/>" ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nama Tenun</th>
+                                <td><?= $item["nama_jenis"] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Keterangan</th>
+                                <td><?= $item["keterangan"] ?></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+        <?php endif; ?>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>

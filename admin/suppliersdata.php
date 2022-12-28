@@ -2,7 +2,7 @@
 include "../php/function.php";
 
 
-if (isset($_POST['addSupliers'])) {
+if (isset($_POST['addSuppliers'])) {
     addSuppliers();
 }
 
@@ -158,7 +158,7 @@ if (isset($_POST['addSupliers'])) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="addItems">Submit</button>
+                        <button type="submit" class="btn btn-primary" name="addSuppliers">Submit</button>
                     </div>
                 </form>
             </div>

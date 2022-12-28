@@ -278,7 +278,35 @@ function deleteData()
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        header("Location: dash.php");
+        header("Location: ../admin/itemsdata.php");
+    } else {
+        echo "Gagal menghapus data";
+    }
+}
+function deleteDataOnSuppliers()
+{
+    global $conn;
+    if (isset($_GET['id']))
+        $id_supplier = $_GET['id'];
+    $query = "DELETE FROM supplier WHERE id_supplier = '$id_supplier'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        header("Location: ../admin/suppliersdata.php");
+    } else {
+        echo "Gagal menghapus data";
+    }
+}
+function deleteDataOnUser()
+{
+    global $conn;
+    if (isset($_GET['id']))
+        $iduser = $_GET['id'];
+    $query = "DELETE FROM login WHERE iduser = '$iduser'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        header("Location: ../admin/usersdata.php");
     } else {
         echo "Gagal menghapus data";
     }

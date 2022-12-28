@@ -79,6 +79,7 @@ if (isset($_POST['addItems'])) {
                 <tbody>
                     <?php
                     $barang = getItems();
+                    $jenis = getTenun();
                     $i = 1;
                     if (count($barang) > 0): ?>
                     <?php foreach ($barang as $item): ?>
@@ -96,7 +97,7 @@ if (isset($_POST['addItems'])) {
                             <?= $item["harga_barang"] ?>
                         </td>
                         <td>
-                            <?= $item["jenis_barang"] ?>
+                            <?= $jenis["nama_jenis"] ?>
                         </td>
                         <td>
                             <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
