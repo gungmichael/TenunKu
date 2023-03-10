@@ -1,18 +1,5 @@
 <?php
-include "function.php";
-
-if (isset($_SESSION['login'])) {
-    if ($_SESSION['login'] == false) {
-        header("Location: login.php");
-    }
-} else {
-    header("Location: login.php");
-}
-
-if (isset($_POST['logout'])) {
-    logout();
-}
-
+include "php/function.php";
 
 if (isset($_POST['addItems'])) {
     addItems();
@@ -33,7 +20,7 @@ if (isset($_POST['addItems'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
